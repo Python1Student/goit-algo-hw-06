@@ -36,8 +36,6 @@ def handle_errors(func):
             return ERROR + "Give me name and phone please"
         except FileNotFoundError:
             return ERROR + "File Not Found"
-        except KeyError:
-            return ERROR + "Give me correct name please"
         except TypeError:
             return ERROR + "Give me name and phone please"
     return inner
