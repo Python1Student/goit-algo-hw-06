@@ -15,7 +15,10 @@ class Name(Field):
 class Phone(Field):
     # реалізація класу
     def __init__(self, value):
-        self.value = value[:10]  # Обмеження до 10 символів
+        if value.isdigit() and len(value) == 10:
+            self.value = value
+        else:
+            raise ValueError
 
 
 class Record:
