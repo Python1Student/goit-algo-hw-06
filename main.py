@@ -32,12 +32,12 @@ class Record:
 
     def edit_phone(self, old_phone, new_phone):
         for phone_obj in self.phones:
-            if str(phone_obj) == old_phone:  # Пошук старого номера телефону
+            if str(phone_obj) == old_phone and Phone(new_phone):  # Пошук старого номера телефону
                 index = self.phones.index(phone_obj)
-                self.phones.pop(index)           # Видалення старого номера телефону
+                self.phones.pop(index)          # Видалення старого номера телефону
                 self.phones.insert(index, Phone(new_phone))  # Вставка нового номера телефону
                 return
-        print('PhoneNotFound')  # Вивід повідомлення про помилку, якщо номер не знайдено
+        raise ValueError  # Вивід повідомлення про помилку, якщо номер не знайдено
 
     def find_phone(self, phone):
         for phone_obj in self.phones:
