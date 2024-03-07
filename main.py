@@ -1,11 +1,13 @@
 from collections import UserDict
 
+
 class Field:
     def __init__(self, value):
         self.value = value
 
     def __str__(self):
         return str(self.value)
+
 
 class Name(Field):
     # реалізація класу
@@ -24,7 +26,7 @@ class Phone(Field):
 class Record:
     def __init__(self, name):
         self.name = Name(name)  # Створення об'єкта класу Name
-        self.phones = []         # Ініціалізація списку телефонів
+        self.phones = []  # Ініціалізація списку телефонів
 
     # реалізація класу
     def add_phone(self, phone):
@@ -34,7 +36,7 @@ class Record:
         for phone_obj in self.phones:
             if str(phone_obj) == old_phone and Phone(new_phone):  # Пошук старого номера телефону
                 index = self.phones.index(phone_obj)
-                self.phones.pop(index)          # Видалення старого номера телефону
+                self.phones.pop(index)  # Видалення старого номера телефону
                 self.phones.insert(index, Phone(new_phone))  # Вставка нового номера телефону
                 return
         raise ValueError  # Вивід повідомлення про помилку, якщо номер не знайдено
@@ -52,9 +54,10 @@ class Record:
     def __str__(self):
         return f"Контакт: {self.name.value}, телефони: {'; '.join(p.value for p in self.phones)}"  # Форматування рядка виводу
 
+
 class AddressBook(UserDict):
     def __init__(self):
-        self.data = {}      # Ініціалізація словника даних
+        self.data = {}  # Ініціалізація словника даних
         self.obj_data = {}  # Ініціалізація словника об'єктів
 
     # реалізація класу
@@ -63,12 +66,12 @@ class AddressBook(UserDict):
         self.obj_data[str(record.name)] = record  # Додавання запису до словника об'єктів
 
     def find(self, name):
-        return self.obj_data[name]  # Пошук запису за ім'ям
+        return self.obj_data.get(name)  # Пошук запису за ім'ям
 
     def delete(self, name):
         if name in self.data:
-            del self.data[name]       # Видалення запису з даних
-            del self.obj_data[name]   # Видалення запису з словника об'єктів
+            del self.data[name]  # Видалення запису з даних
+            del self.obj_data[name]  # Видалення запису з словника об'єктів
         else:
             print('NotFound')  # Вивід повідомлення про помилку, якщо запис не знайдено
 
