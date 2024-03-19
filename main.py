@@ -60,13 +60,13 @@ class AddressBook(UserDict):
         return self.__find(name)
 
     def delete(self, name):
-        self.__find(name)
-        del self.data[name]
+    	if self.__find(name):
+        	del self.data[name] 
 
     def __find(self, name):
         result = self.data.get(name, None)
         if result is None:
-            raise ValueError
+            raise KeyError
         return result
 
 
