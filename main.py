@@ -60,10 +60,14 @@ class AddressBook(UserDict):
         self.data[record.name.value] = record
 
     def find(self, name):
-        return self.data.get(name)
+        result = self.data.get(name, None)
+        if result is None:
+            raise ValueError
+        return result
 
     def delete(self, name):
-        self.data.pop(name)
+        AdressBook.find(self, name)
+        del self.data[name]
 
 
 def main():
