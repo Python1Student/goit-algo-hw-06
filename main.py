@@ -66,7 +66,7 @@ class AddressBook(UserDict):
         return result
 
     def delete(self, name):
-        AdressBook.find(self, name)
+        AddressBook.find(self, name)
         del self.data[name]
 
 
