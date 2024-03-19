@@ -38,6 +38,10 @@ class Record:
         result = Record.__find_phone(self, old_phone)
         self.phones[self.phones.index(result)] = Phone(new_phone)
 
+    def remove_phone(self, phone):
+        result = Record.__find_phone(self, phone)
+        self.phones.remove(result)
+
     def __find_phone(self, phone):
         for number in self.phones:
             if number.value == phone:
