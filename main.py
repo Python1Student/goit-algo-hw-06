@@ -11,15 +11,18 @@ class Field:
 
 class Name(Field):
     # реалізація класу
-    pass
+    def __init__(self, name):
+        if not name:
+            raise ValueError
+        Field.__init__(self, name)
 
 
 class Phone(Field):
     # реалізація класу
-    def __init__(self, value):
-        if len(value) != 10 or not value.isdigit():
+    def __init__(self, number):
+        if len(number) != 10 or not number.isdigit():
             raise ValueError
-        Field.__init__(self, value)
+        Field.__init__(self, number)
 
 
 class Record:
@@ -55,6 +58,8 @@ class Record:
 class AddressBook(UserDict):
     # реалізація класу
     def add_record(self, record):
+        if not isinstance(record, Record):
+            raise ValueError
         self.data[record.name.value] = record
 
     def find(self, name):
